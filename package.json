@@ -9,14 +9,14 @@
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
     "start-client": "cd client && npm run dev",
-    "build": "npm install-server && npm install-client && npm build-client",
-    "start": "npm start-server"
+    "build": "npm run install-server && npm run install-client && npm run build-client",
+    "start": "npm run start-server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "render": {
     "buildCommand": "npm run build",
-    "startCommand": "npm start"
+    "startCommand": "npm run start"
   }
 }
