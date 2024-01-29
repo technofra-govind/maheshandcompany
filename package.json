@@ -8,9 +8,15 @@
     "start-server": "cd backend && nodemon app.js",
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
-    "start-client": "cd client && npm run dev"
+    "start-client": "cd client && npm run dev",
+    "build": "npm install-server && npm install-client && npm build-client",
+    "start": "npm start-server"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "render": {
+    "buildCommand": "npm run build",
+    "startCommand": "npm start"
+  }
 }
