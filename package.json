@@ -2,9 +2,10 @@
   "name": "maheshnco",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.cjs",
   "scripts": {
-    "build": "npm install && npm run your-custom-build-script"
+    "build": "npm install && npm run your-custom-build-script",
+    "start": "nodemon server.cjs"
   },
   "author": "",
   "license": "ISC"
