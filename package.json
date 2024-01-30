@@ -1,0 +1,11 @@
+{
+  "name": "maheshnco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install && npm run your-custom-build-script"
+  },
+  "author": "",
+  "license": "ISC"
+}
