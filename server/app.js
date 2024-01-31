@@ -8,7 +8,7 @@ require("dotenv").config();
 
 // middleware
 const corOptions = {
-    origin:"https://dashing-meerkat-8d0123.netlify.app"
+    origin:"https://technofra.co.in/"
 }
 app.use(cors(corOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
