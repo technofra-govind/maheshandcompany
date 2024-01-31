@@ -8,6 +8,9 @@ import SandItem from "./Pages/SandItem/SandItem";
 import Bags from "./Pages/Bags/Bags";
 
 function App() {
+  useEffect(() => {
+    fetch("https://mahesh-backend-deploy.onrender.com")
+  }, []);
   return (
     <>
       <Router>
