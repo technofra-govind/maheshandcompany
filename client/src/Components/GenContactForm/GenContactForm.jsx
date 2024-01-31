@@ -25,7 +25,7 @@ function GenContactForm() {
     try {
       setSubmitting(true);
 
-      const response = await fetch('https://mern-deploy-backend-iubl.onrender.com/submit-form', {
+      const response = await fetch('https://mahesh-backend-deploy.onrender.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
