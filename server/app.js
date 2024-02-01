@@ -8,7 +8,7 @@ require("dotenv").config();
 
 // middleware
 const corOptions = {
-    origin:"https://mern-deploy-frontend-1iiw.onrender.com"
+    origin:"https://technofra.co.in/"
 }
 app.use(cors(corOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
