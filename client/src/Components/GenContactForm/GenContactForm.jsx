@@ -25,7 +25,7 @@ function GenContactForm() {
     try {
       setSubmitting(true);
 
-      const response = await fetch('https://mahesh-backend-deploy.onrender.com', {
+      const response = await fetch('https://mahesh-backend-deploy.onrender.com/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
