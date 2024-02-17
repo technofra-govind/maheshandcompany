@@ -1,12 +1,13 @@
 import React from 'react'
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer'
-import Bread from '../../Components/Bread/Bread'
 import ProductComp from '../../Components/ProductComp/ProductComp'
+import OurProductsBread from '../../Components/Bread/OurProductsBread'
+import Header1 from '../../Components/Header/Header1'
 
 export default function SandItem() {
-  
-  const SandItems=[
+
+  const SandItems = [
     {
       imgSrc: "/assets/img/sand-timers/sand-timer-with-compass-base.png",
       name: "Sand Timer With Compass Base",
@@ -26,11 +27,11 @@ export default function SandItem() {
   ];
 
   return (
-   <>
-   <Header/>
-   <Bread pageTitle={'Sand Items'} pagePath={'/sanditems'}/>
-   <ProductComp products={SandItems}/>
-   <Footer/>
-   </>
+    <>
+      <Header1 />
+      <OurProductsBread pageTitle2={'Sand Timers'} pagePath2={'/sandtimers'} />
+      <ProductComp products={SandItems} />
+      <Footer />
+    </>
   )
 }

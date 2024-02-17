@@ -1,20 +1,17 @@
 import React from 'react'
 
 import Footer from '../../Components/Footer/Footer'
-import Header from '../../Components/Header/Header'
+// import Header from '../../Components/Header/Header'
 import Bread from '../../Components/Bread/Bread'
 import Aboutcom from '../../Components/Aboutcom/Aboutcom'
-import TeamSection from '../../Components/TeamSection/TeamSection'
-import TestimonialSection from '../../Components/TestimonialSection/TestimonialSection'
+import Header1 from '../../Components/Header/Header1'
 
 function About() {
   return (
    <>
-   <Header/>
+   <Header1/>
    <Bread pageTitle="About Us" pagePath="/about" />
    <Aboutcom/>
-   <TeamSection/>
-   <TestimonialSection/>
    <Footer/>
    </>
   )

@@ -1,11 +1,13 @@
 import React from 'react'
 import Header from '../../Components/Header/Header'
 import Bread from '../../Components/Bread/Bread'
+import OurProductsBread from '../../Components/Bread/OurProductsBread'
 import ProductComp from '../../Components/ProductComp/ProductComp'
 import Footer from '../../Components/Footer/Footer'
-
+import './bags.css'
+import Header1 from '../../Components/Header/Header1'
 function Bags() {
-  const Bag=[
+  const Bag = [
     {
       imgSrc: "/assets/img/new-bags/laptop-bag.png",
       name: "Laptop Bag",
@@ -33,11 +35,10 @@ function Bags() {
   ]
   return (
     <>
-    <Header/>
-    <Bread pageTitle={'Bags'} pagePath={'/bags'}/>
-    <ProductComp products={Bag}/>
-    <Footer/>
-
+      <Header1 />
+      <OurProductsBread pageTitle2={'Bags'} pagePath2={'/bags'} />
+      <ProductComp products={Bag} />
+      <Footer />
     </>
   )
 }

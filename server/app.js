@@ -1,77 +1,73 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const app = express();
+const express = require('express');
 const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
-const cors = require("cors")
-require("dotenv").config();
+const cors = require('cors');
+require('dotenv').config();
 
-// middleware
-const corOptions = {
-    origin:"https://technofra.co.in/"
-}
-app.use(cors(corOptions));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); 
+const app = express();
 
-// app.use(express.json()) 
-// app.use(cors())
-// Connect mongoDB
-mongoose.connect(process.env.MONGODB_URI).then(()=>{
-    const PORT = process.env.PORT || 8000
-    app.listen(PORT,()=>{
-        console.log(`App is Listening on PORT ${PORT}`)
-    })
-}).catch(err=>{
-    console.log(err);
-})
+app.use(cors());
+app.use(express.json());
 
-app.get("/",(req,res)=>{
-    res.status(201).json({message:"Connected to backend successfully !"})
-})
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_EMAIL,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
 
-app.post('/submit-form', cors(corOptions), async (req, res) => {
-    const { firstname, lastname, number, email, message } = req.body;
-  
-    try {
-      // Send email to website owner
-      const ownerEmail = 'govind@technofra.com'; // Replace with your email
-      await sendEmail(ownerEmail, 'New Form Submission', `Name: ${firstname} ${lastname}\nPhone: ${number}\nEmail: ${email}\nMessage: ${message}`);
-  
-      // Send thank-you email to the user
-      await sendEmail(email, 'Thank You for Your Submission', 'Thank you for submitting the form. We will get back to you soon.');
-  
-      res.status(200).send('Form submitted successfully.');
-    } catch (error) {
-      console.error('Error processing form submission:', error);
-      res.status(500).send('Internal Server Error');
-    }
-  });
-  async function sendEmail(to, subject, text) {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'govind@technofra.com',
-        pass: 'Mumbai#1021',
-      },
-    });
-  
+
+app.post('/submit-form', async (req, res) => {
+  const { firstname, lastname, number, email, message } = req.body;
+
+  try {
     const mailOptions = {
-      from: 'support@technofra.com',
-      to,
-      subject,
-      text,
+      from: email, // Set the "from" field to the user's email address
+      to: process.env.SMTP_EMAIL,
+      subject: 'New Contact Form Submission',
+      text: `First Name: ${firstname}\nLast Name: ${lastname}\n Number: ${number}\n Email: ${email}\nMessage: ${message}`,
     };
-  
-    return new Promise((resolve, reject) => {
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.error(error);
-          reject(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-          resolve(info);
-        }
-      });
-    });
+
+    // Send the email to notify you of the form submission
+    await transporter.sendMail(mailOptions);
+
+    // Send a thank you email to the user
+    const thankYouMailOptions = {
+      from: process.env.SMTP_EMAIL,
+      to: email,
+      subject: 'Thank You for Contacting Us',
+      text: 'Thank you for contacting us. We have received your message and will get back to you as soon as possible.'
+    };
+
+    await transporter.sendMail(thankYouMailOptions);
+
+    // Log the information about the sent email
+    console.log('Email sent:', mailOptions);
+
+    // Log other details
+    console.log(firstname, lastname, number, email, message);
+    console.log('Form submitted successfully');
+
+    // Send success response
+    res.status(200).json({ success: true, message: 'Form submitted successfully' });
+  } catch (error) {
+    // Log and send error response if sending email fails
+    console.error('Error submitting form:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
+});
+
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+app.listen();
+
+
+
+
+
+
+

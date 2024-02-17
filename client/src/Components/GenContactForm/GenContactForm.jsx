@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function GenContactForm() {
   const initialFormData = {
@@ -25,7 +27,7 @@ function GenContactForm() {
     try {
       setSubmitting(true);
 
-      const response = await fetch('https://mahesh-backend-deploy.onrender.com/submit-form', {
+      const response = await fetch('https://maheshandcompany-backend.onrender.com/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,11 +37,13 @@ function GenContactForm() {
 
       if (response.ok) {
         console.log('Form submitted successfully');
+        console.log("Frontend console is printed")
         setSubmissionSuccess(true);
         setFormData(initialFormData); // Clear the form
       } else {
         console.error('Failed to submit form');
-        setSubmissionError('Failed to submit form. Please try again later.');
+        // setSubmissionError('Failed to submit form. Please try again later.');
+        toast.error("Failed to submit form. Please try again later.")
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -117,8 +121,7 @@ function GenContactForm() {
                       <div className="contact__info--content">
                         <p className="contact__info--content__desc text-white">
                           <a
-                            href="mailto:admin@maheshandco.in
-"
+                            href="mailto:admin@maheshandco.in"
                           >
                             admin@maheshandco.in
                           </a>{" "}
@@ -234,296 +237,303 @@ function GenContactForm() {
               </div>
               <div className="col-lg-7">
                 <div className="contact__form">
-                  
-                {submissionSuccess ? (
 
-                  <div>
-                    <p style={{ color: 'green' }}>Contact form submitted successfully. Thank you!</p>
-                    <form
-                    className="contact__form--inner"
-                    onSubmit={handleSubmit}
-                  >
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <div className="contact__form--list mb-20">
-                          <label
-                            className="contact__form--label"
-                            htmlFor="input1"
-                          >
-                            First Name{" "}
-                            <span className="contact__form--label__star">
-                              *
-                            </span>
-                          </label>
-                          <input
-                            className="contact__form--input"
-                            name="firstname"
-                            id="input1"
-                            placeholder="Your First Name"
-                            type="text"
-                            value={formData.firstname} // Add this line to bind value to state
-                            onChange={handleChange} // Add this line to handle changes
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="contact__form--list mb-20">
-                          <label
-                            className="contact__form--label"
-                            htmlFor="input2"
-                          >
-                            Last Name{" "}
-                            <span className="contact__form--label__star">
-                              *
-                            </span>
-                          </label>
-                          <input
-                            className="contact__form--input"
-                            name="lastname"
-                            id="input2"
-                            placeholder="Your Last Name"
-                            type="text"
-                            value={formData.lastname}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="contact__form--list mb-20">
-                          <label
-                            className="contact__form--label"
-                            htmlFor="input3"
-                          >
-                            Phone Number{" "}
-                            <span className="contact__form--label__star">
-                              *
-                            </span>
-                          </label>
-                          <input
-                            className="contact__form--input"
-                            name="number"
-                            id="input3"
-                            placeholder="Phone number"
-                            type="text"
-                            value={formData.number}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="contact__form--list mb-20">
-                          <label
-                            className="contact__form--label"
-                            htmlFor="input4"
-                          >
-                            Email{" "}
-                            <span className="contact__form--label__star">
-                              *
-                            </span>
-                          </label>
-                          <input
-                            className="contact__form--input"
-                            name="email"
-                            id="input4"
-                            placeholder="Email"
-                            type="text"
-                            value={formData.email}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-12">
-                        <div className="contact__form--list mb-10">
-                          <label
-                            className="contact__form--label"
-                            htmlFor="input5"
-                          >
-                            Write Your Message{" "}
-                            <span className="contact__form--label__star">
-                              *
-                            </span>
-                          </label>
-                          <textarea
-                            className="contact__form--textarea"
-                            name="message"
-                            id="input5"
-                            placeholder="Write Your Message"
-                            value={formData.message}
-                            onChange={handleChange}
-                          ></textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="account__login--remember position__relative mb-15">
-                      <input
-                        className="checkout__checkbox--input"
-                        id="check2"
-                        type="checkbox"
-                      />
-                      <span className="checkout__checkbox--checkmark"></span>
-                      <label
-                        className="checkout__checkbox--label login__remember--label"
-                        htmlFor="check2"
+                  {submissionSuccess ? (
+
+                    <div>
+                      <p style={{ color: 'green' }}>Contact form submitted successfully. Thank you!</p>
+                      <form
+                        className="contact__form--inner"
+                        onSubmit={handleSubmit}
                       >
-                        Accept Terms & Condition
-                      </label>
+                        <div className="row">
+                          <div className="col-lg-6 col-md-6">
+                            <div className="contact__form--list mb-20">
+                              <label
+                                className="contact__form--label"
+                                htmlFor="input1"
+                              >
+                                First Name{" "}
+                                <span className="contact__form--label__star">
+                                  *
+                                </span>
+                              </label>
+                              <input
+                                className="contact__form--input"
+                                name="firstname"
+                                id="input1"
+                                placeholder="Your First Name"
+                                type="text"
+                                value={formData.firstname} // Add this line to bind value to state
+                                onChange={handleChange} // Add this line to handle changes
+                              />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="contact__form--list mb-20">
+                              <label
+                                className="contact__form--label"
+                                htmlFor="input2"
+                              >
+                                Last Name{" "}
+                                <span className="contact__form--label__star">
+                                  *
+                                </span>
+                              </label>
+                              <input
+                                className="contact__form--input"
+                                name="lastname"
+                                id="input2"
+                                placeholder="Your Last Name"
+                                type="text"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="contact__form--list mb-20">
+                              <label
+                                className="contact__form--label"
+                                htmlFor="input3"
+                              >
+                                Phone Number{" "}
+                                <span className="contact__form--label__star">
+                                  *
+                                </span>
+                              </label>
+                              <input
+                                className="contact__form--input"
+                                name="number"
+                                id="input3"
+                                placeholder="Phone number"
+                                type="text"
+                                value={formData.number}
+                                onChange={handleChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="contact__form--list mb-20">
+                              <label
+                                className="contact__form--label"
+                                htmlFor="input4"
+                              >
+                                Email{" "}
+                                <span className="contact__form--label__star">
+                                  *
+                                </span>
+                              </label>
+                              <input
+                                className="contact__form--input"
+                                name="email"
+                                id="input4"
+                                placeholder="Email"
+                                type="text"
+                                value={formData.email}
+                                onChange={handleChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="col-12">
+                            <div className="contact__form--list mb-10">
+                              <label
+                                className="contact__form--label"
+                                htmlFor="input5"
+                              >
+                                Write Your Message{" "}
+                                <span className="contact__form--label__star">
+                                  *
+                                </span>
+                              </label>
+                              <textarea
+                                className="contact__form--textarea"
+                                name="message"
+                                id="input5"
+                                placeholder="Write Your Message"
+                                value={formData.message}
+                                onChange={handleChange}
+                              ></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="account__login--remember position__relative mb-15">
+                          <input
+                            className="checkout__checkbox--input"
+                            id="check2"
+                            type="checkbox"
+                          />
+                          <span className="checkout__checkbox--checkmark"></span>
+                          <label
+                            className="checkout__checkbox--label login__remember--label"
+                            htmlFor="check2"
+                          >
+                            Accept Terms & Condition
+                          </label>
+                        </div>
+                        <button
+                          className="contact__form--btn primary__btn"
+                          type="submit"
+                          disabled={submitting}
+                        >
+                          Submit Now
+                        </button>
+                        {submissionError && <p style={{ color: 'red' }}>{submissionError}</p>}
+                      </form>
                     </div>
-                    <button
-                      className="contact__form--btn primary__btn"
-                      type="submit"
-                      disabled={submitting}
+                  ) : (
+                    <form
+                      className="contact__form--inner"
+                      onSubmit={handleSubmit}
                     >
-                      Submit Now
-                    </button>
-                    {submissionError && <p style={{ color: 'red' }}>{submissionError}</p>}
-                  </form>
-                  </div>
-                 ) : (
-                  <form
-                  className="contact__form--inner"
-                  onSubmit={handleSubmit}
-                >
-                  <div className="row">
-                    <div className="col-lg-6 col-md-6">
-                      <div className="contact__form--list mb-20">
-                        <label
-                          className="contact__form--label"
-                          htmlFor="input1"
-                        >
-                          First Name{" "}
-                          <span className="contact__form--label__star">
-                            *
-                          </span>
-                        </label>
+                      <div className="row">
+                        <div className="col-lg-6 col-md-6">
+                          <div className="contact__form--list mb-20">
+                            <label
+                              className="contact__form--label"
+                              htmlFor="input1"
+                            >
+                              First Name{" "}
+                              <span className="contact__form--label__star">
+                                *
+                              </span>
+                            </label>
+                            <input
+                              className="contact__form--input"
+                              name="firstname"
+                              id="input1"
+                              placeholder="Your First Name"
+                              type="text"
+                              value={formData.firstname} // Add this line to bind value to state
+                              onChange={handleChange} // Add this line to handle changes
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="contact__form--list mb-20">
+                            <label
+                              className="contact__form--label"
+                              htmlFor="input2"
+                            >
+                              Last Name{" "}
+                              <span className="contact__form--label__star">
+                                *
+                              </span>
+                            </label>
+                            <input
+                              className="contact__form--input"
+                              name="lastname"
+                              id="input2"
+                              placeholder="Your Last Name"
+                              type="text"
+                              value={formData.lastname}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="contact__form--list mb-20">
+                            <label
+                              className="contact__form--label"
+                              htmlFor="input3"
+                            >
+                              Phone Number{" "}
+                              <span className="contact__form--label__star">
+                                *
+                              </span>
+                            </label>
+                            <input
+                              className="contact__form--input"
+                              name="number"
+                              id="input3"
+                              placeholder="Phone number"
+                              type="text"
+                              value={formData.number}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                          <div className="contact__form--list mb-20">
+                            <label
+                              className="contact__form--label"
+                              htmlFor="input4"
+                            >
+                              Email{" "}
+                              <span className="contact__form--label__star">
+                                *
+                              </span>
+                            </label>
+                            <input
+                              className="contact__form--input"
+                              name="email"
+                              id="input4"
+                              placeholder="Email"
+                              type="text"
+                              value={formData.email}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-12">
+                          <div className="contact__form--list mb-10">
+                            <label
+                              className="contact__form--label"
+                              htmlFor="input5"
+                            >
+                              Write Your Message{" "}
+                              <span className="contact__form--label__star">
+                                *
+                              </span>
+                            </label>
+                            <textarea
+                              className="contact__form--textarea"
+                              name="message"
+                              id="input5"
+                              placeholder="Write Your Message"
+                              value={formData.message}
+                              onChange={handleChange}
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="account__login--remember position__relative mb-15">
                         <input
-                          className="contact__form--input"
-                          name="firstname"
-                          id="input1"
-                          placeholder="Your First Name"
-                          type="text"
-                          value={formData.firstname} // Add this line to bind value to state
-                          onChange={handleChange} // Add this line to handle changes
+                          className="checkout__checkbox--input"
+                          id="check2"
+                          type="checkbox"
                         />
-                      </div>
-                    </div>
-                    <div className="col-lg-6 col-md-6">
-                      <div className="contact__form--list mb-20">
+                        <span className="checkout__checkbox--checkmark"></span>
                         <label
-                          className="contact__form--label"
-                          htmlFor="input2"
+                          className="checkout__checkbox--label login__remember--label"
+                          htmlFor="check2"
                         >
-                          Last Name{" "}
-                          <span className="contact__form--label__star">
-                            *
-                          </span>
+                          Accept Terms & Condition
                         </label>
-                        <input
-                          className="contact__form--input"
-                          name="lastname"
-                          id="input2"
-                          placeholder="Your Last Name"
-                          type="text"
-                          value={formData.lastname}
-                          onChange={handleChange}
-                        />
                       </div>
-                    </div>
-                    <div className="col-lg-6 col-md-6">
-                      <div className="contact__form--list mb-20">
-                        <label
-                          className="contact__form--label"
-                          htmlFor="input3"
-                        >
-                          Phone Number{" "}
-                          <span className="contact__form--label__star">
-                            *
-                          </span>
-                        </label>
-                        <input
-                          className="contact__form--input"
-                          name="number"
-                          id="input3"
-                          placeholder="Phone number"
-                          type="text"
-                          value={formData.number}
-                          onChange={handleChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="col-lg-6 col-md-6">
-                      <div className="contact__form--list mb-20">
-                        <label
-                          className="contact__form--label"
-                          htmlFor="input4"
-                        >
-                          Email{" "}
-                          <span className="contact__form--label__star">
-                            *
-                          </span>
-                        </label>
-                        <input
-                          className="contact__form--input"
-                          name="email"
-                          id="input4"
-                          placeholder="Email"
-                          type="text"
-                          value={formData.email}
-                          onChange={handleChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12">
-                      <div className="contact__form--list mb-10">
-                        <label
-                          className="contact__form--label"
-                          htmlFor="input5"
-                        >
-                          Write Your Message{" "}
-                          <span className="contact__form--label__star">
-                            *
-                          </span>
-                        </label>
-                        <textarea
-                          className="contact__form--textarea"
-                          name="message"
-                          id="input5"
-                          placeholder="Write Your Message"
-                          value={formData.message}
-                          onChange={handleChange}
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="account__login--remember position__relative mb-15">
-                    <input
-                      className="checkout__checkbox--input"
-                      id="check2"
-                      type="checkbox"
-                    />
-                    <span className="checkout__checkbox--checkmark"></span>
-                    <label
-                      className="checkout__checkbox--label login__remember--label"
-                      htmlFor="check2"
-                    >
-                      Accept Terms & Condition
-                    </label>
-                  </div>
-                  <button
-                    className="contact__form--btn primary__btn"
-                    type="submit"
-                    disabled={submitting}
-                  >
-                    Submit Now
-                  </button>
-                  {submissionError && <p style={{ color: 'red' }}>{submissionError}</p>}
-                </form>
-                )}
+                      <button
+                        className="contact__form--btn primary__btn"
+                        type="submit"
+                        disabled={submitting}
+                      >
+                        Submit Now
+                      </button>
+                      {submissionError && <p style={{ color: 'red' }}>{submissionError}</p>}
+                    </form>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <ToastContainer />
       </section>
+      {/* <!-- Start contact map area --> */}
+      <div className="contact__map--area section--padding pt-0 pb-0">
+        <iframe className="contact__map--iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.1356595758903!2d72.84299307596719!3d19.189276248405154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b7c6ff755669%3A0xe838676f71dc30c6!2sMahesh%20%26%20Co!5e0!3m2!1sen!2sin!4v1698758723318!5m2!1sen!2sin" style={{ border: "0" }} allowFullScreen="" loading="lazy"></iframe>
+      </div>
+
+      {/* <!-- End contact map area --> */}
     </>
   );
 }
